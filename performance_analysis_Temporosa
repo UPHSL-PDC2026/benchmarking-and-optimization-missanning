@@ -1,0 +1,14 @@
+Which version was fastest?
+- The sequential version was actually the fastest in this run with 0.675 seconds, slgihtly faster than the optimized version with 0.831 seconds. The parallel version took much longer with 2.224 seconds due to the overhead of creating multiple processes and splitting the data for parallel computation.
+
+What was the speedup achieved?
+- Speedup compares sequential execution to the parallel version. Speedup = Sequential Time/Parallel Time = 0.675/2.224 = 0.30.This means the parallel version ran slower than sequential in this case. The optimized version improved the sequential code slightly, but because the dataset size and the task are small, multiprocessing overhead outweighed any benefits.
+
+Was efficiency high or low? Why?
+- Efficiency was low because using multiple processes adds overhead which leads to creating and managing separating processes, splitting and merging the data, and inter-process communication. Parallelization can be slower than a simple sequential loop for small tasks like this activity.
+
+What bottleneck did profiling reveal?
+- Profiling showed that the manual loop in compute_sum() consumed most of the execution time. Iterating over millions of numbers in Python is slower than using built-in optimized functions.
+
+How did optimization affect performance?
+- Replacing the manual loop with Python's built-in sum (x*x for x in data) slightly improved performance, from 0.675 to 0.831 secs. It reduced loop overhead and allowed Python to process the computation more efficiently at a lower level.
